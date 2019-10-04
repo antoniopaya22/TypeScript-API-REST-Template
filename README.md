@@ -9,7 +9,7 @@
 
 ## Build
 ```docker
-docker build -t api-rest:latest
+docker build . -t api-rest:latest
 ```
 
 ## Run
