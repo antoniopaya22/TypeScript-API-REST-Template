@@ -8,7 +8,11 @@
 
 
 ## Build
+```docker
 docker build -t api-rest:latest
+```
 
 ## Run
+```docker
 sudo docker run api-rest
+```
