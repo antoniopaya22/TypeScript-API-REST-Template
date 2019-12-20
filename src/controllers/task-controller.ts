@@ -1,13 +1,13 @@
-import { Task } from '../models/task';
+
 import { Request, Response } from 'express';
+import { TaskRepository } from '../repository/task-repository';
 
 
 export class TaskController{
 
-    public saludarTask (req: Request, res: Response) {           
-        const t = new Task();
+    public saludarTask (req: Request, res: Response) {     
         res.status(200).json({
-            message: t.saludar("Antonio")
+            message: TaskRepository.saludar()
         });
     }
 

@@ -1,5 +1,3 @@
-import {Request, Response} from "express";
-
 import { TaskController } from "../controllers/task-controller";
 
 export class Routes {       
