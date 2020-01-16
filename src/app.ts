@@ -14,6 +14,7 @@ class App {
     constructor() {
         this.app = express();
         this.config();
+        this.routePrv.routes(this.app);
     }
 
     private config(): void {
@@ -31,10 +32,15 @@ class App {
             preflightContinue: false
         };
         this.app.use(cors(options));
+        this.databaseConnection();
+    }
 
-        createConnection().then(connection => {
+    private databaseConnection(): void {
+        const runMode = process.env.MODE || 'test';
+        const databaseName = runMode == 'test' ? 'testDB' : 'default';
+        createConnection(databaseName).then(connection => {
+            console.log("The connection to the database has been established in mode: " + runMode);
         }).catch(error => console.log(error));        
-        this.routePrv.routes(this.app);
     }
 
 }
