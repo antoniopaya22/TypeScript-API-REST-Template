@@ -7,7 +7,7 @@
 [![fork this repo](http://githubbadges.com/fork.svg?user=antonioalfa22&repo=TypeScript-API-REST-Template&style=flat)](https://github.com/antonioalfa22/TypeScript-API-REST-Template/fork)
 
 
-## 1. Estructura
+## 1. Estructura y Flujo
 
 ```bash
 └───src
@@ -18,6 +18,8 @@
     ├───routes
     └───test
 ```
+
+![flow diagram](./flow.png)
 
 ### 1.1. Models
 
@@ -48,7 +50,7 @@ npm run dev
 
 Para ejecutar la API-Rest en producción se deben de realziar los siguientes pasos:
 
-1. Set .env
+1. **Set .env**
 
 Se necesita crear un archivo de configuración `.env` como el siguiente:
 
@@ -56,7 +58,7 @@ Se necesita crear un archivo de configuración `.env` como el siguiente:
 MODE = test
 ```
 
-2. Run
+2. **Run**
 
 ```node
 npm install
@@ -65,7 +67,7 @@ npm run prod
 
 ## 2. Ejecutar con Docker
 
-1. Set .env
+1. **Set .env**
 
 Se necesita crear un archivo de configuración `.env` como el siguiente:
 
@@ -73,13 +75,13 @@ Se necesita crear un archivo de configuración `.env` como el siguiente:
 MODE = test
 ```
 
-2. Build
+2. **Build**
 
 ```docker
 docker build . -t api-rest:latest
 ```
 
-3. Run
+3. **Run**
 
 ```docker
 docker run api-rest
