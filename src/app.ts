@@ -37,7 +37,7 @@ class App {
 
     private databaseConnection(): void {
         const runMode = process.env.MODE || 'test';
-        const databaseName = runMode == 'test' ? 'testDB' : 'default';
+        const databaseName = runMode == 'test' ? 'test' : 'default';
         createConnection(databaseName).then(connection => {
             console.log("The connection to the database has been established in mode: " + runMode);
         }).catch(error => console.log(error));        

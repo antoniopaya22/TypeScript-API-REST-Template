@@ -1,9 +1,9 @@
-import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
 
-    constructor(firstName?: string, lastName?: string, hash?: string, salt?: string){
+    constructor(firstName?: string, lastName?: string, hash?: string, salt?: string) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.hash = hash;

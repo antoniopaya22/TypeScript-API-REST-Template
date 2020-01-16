@@ -8,7 +8,7 @@ const signOpts = {
     expiresIn: "24h"
 };
 
-export class AuthController {
+export class Auth {
 
     public async login(req: Request, res: Response) {
         const user = await UserRepository.getUserByFirstName(req.body.firstName);
@@ -17,7 +17,7 @@ export class AuthController {
         }else {
             const hash = crypto.pbkdf2Sync(req.body.password, user.salt, 1000, 64, `sha512`).toString(`hex`);
             if(hash == user.hash){
-                res.status(200).send(AuthController.createToken(user.firstName));
+                res.status(200).send(Auth.createToken(user.firstName));
             }else {
                 res.status(500).json({error: "Error, la contraseña no coincide"});
             }

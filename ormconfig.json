@@ -3,7 +3,7 @@
     "skip": false,
     "type": "sqlite",
     "database": "database.db",
-    "entities": ["src/models/*.ts"],
+    "entities": ["dist/models/*.js"],
     "logging": false
 }, {
     "name": "test",

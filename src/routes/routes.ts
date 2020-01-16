@@ -1,10 +1,10 @@
 import { UserController } from "../controllers/user-controller";
-import { AuthController } from '../controllers/auth-controller';
+import { Auth } from '../middlewares/auth';
 
 export class Routes {       
         
     public userController: UserController = new UserController();
-    public authController: AuthController = new AuthController();
+    public auth: Auth = new Auth();
 
     public routes(app): void {   
 
@@ -17,10 +17,10 @@ export class Routes {
 
         app.route('/api/user/:id')
         .get(this.userController.getUserById)
-        .delete(this.authController.isAuth, this.userController.deleteUser)
+        .delete(this.auth.isAuth, this.userController.deleteUser)
 
         // ======== LOGIN ============
         app.route('/api/login')
-        .post(this.authController.login)
+        .post(this.auth.login)
     }
 }

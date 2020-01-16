@@ -7,117 +7,80 @@
 [![fork this repo](http://githubbadges.com/fork.svg?user=antonioalfa22&repo=TypeScript-API-REST-Template&style=flat)](https://github.com/antonioalfa22/TypeScript-API-REST-Template/fork)
 
 
-## Build
+## 1. Estructura
+
+```bash
+└───src
+    ├───controllers
+    ├───models
+    ├───middlewares
+    ├───repository
+    ├───routes
+    └───test
+```
+
+### 1.1. Models
+
+Representa el modelo de datos, (por ejemplo un usuario).
+
+### 1.2. Repository
+
+Se encargan de proporcionar los métodos de acceso a base de datos para trabajar con los modelos (Entidades).
+
+### 1.3. Middlewares
+
+Son los componentes encargados de comprobar si se debe o no seguir con la petición. Por ejemplo autorización o roles.
+
+### 1.4. Controllers
+
+Los controladores son los encargados de realizar las operaciones requeridas por la petición definida en la ruta.
+
+_______
+
+## 2. Ejecutar
+
+Para ejecutar la API-Rest en modo de desarrollo o testeo se deben ejecutar las siguientes instrucciones:
+
+```node
+npm install
+npm run dev
+```
+
+Para ejecutar la API-Rest en producción se deben de realziar los siguientes pasos:
+
+1. Set .env
+
+Se necesita crear un archivo de configuración `.env` como el siguiente:
+
+```env
+MODE = test
+```
+
+2. Run
+
+```node
+npm install
+npm run prod
+```
+
+## 2. Ejecutar con Docker
+
+1. Set .env
+
+Se necesita crear un archivo de configuración `.env` como el siguiente:
+
+```env
+MODE = test
+```
+
+2. Build
+
 ```docker
 docker build . -t api-rest:latest
 ```
 
-## Run
+3. Run
+
 ```docker
-sudo docker run api-rest
-```
-
-## ORM Migration
-
-```
-typeorm migration:run -n {migrationName}
-```
-
-## ORM config examples
-
-```json
-[
-  {
-    "skip": false,
-    "name": "mysql",
-    "type": "mysql",
-    "host": "localhost",
-    "port": 3306,
-    "username": "root",
-    "password": "admin",
-    "database": "test",
-    "logging": false
-  },
-  {
-    "skip": false,
-    "name": "mariadb",
-    "type": "mariadb",
-    "host": "localhost",
-    "port": 3307,
-    "username": "root",
-    "password": "admin",
-    "database": "test",
-    "logging": false
-  },
-  {
-    "skip": false,
-    "name": "sqlite",
-    "type": "sqlite",
-    "database": "temp/sqlitedb.db",
-    "logging": false
-  },
-  {
-    "skip": false,
-    "name": "postgres",
-    "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "test",
-    "password": "test",
-    "database": "test",
-    "logging": false
-  },
-  {
-    "skip": true,
-    "name": "mssql",
-    "type": "mssql",
-    "host": "localhost",
-    "username": "sa",
-    "password": "Admin12345",
-    "database": "tempdb",
-    "logging": false
-  },
-  {
-    "skip": true,
-    "name": "oracle",
-    "type": "oracle",
-    "host": "localhost",
-    "username": "system",
-    "password": "oracle",
-    "port": 1521,
-    "sid": "xe.oracle.docker",
-    "logging": false
-  },
-  {
-    "skip": false,
-    "name": "cockroachdb",
-    "type": "cockroachdb",
-    "host": "localhost",
-    "port": 26257,
-    "username": "root",
-    "password": "",
-    "database": "defaultdb"
-  },
-  {
-    "skip": false,
-    "name": "sap",
-    "type": "sap",
-    "host": "192.168.56.102",
-    "port": 39015,
-    "username": "SYSTEM",
-    "password": "MySuperHanaPwd123!",
-    "database": "HXE",
-    "logging": false
-  },
-  {
-    "skip": false,
-    "disabledIfNotEnabledImplicitly": true,
-    "name": "mongodb",
-    "type": "mongodb",
-    "database": "test",
-    "logging": false,
-    "useNewUrlParser": true,
-    "useUnifiedTopology": true
-  }
-]
+docker run api-rest
 ```
