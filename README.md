@@ -84,5 +84,5 @@ docker build . -t api-rest:latest
 3. **Run**
 
 ```docker
-docker run api-rest
+docker container run --publish 3000:3000 --detach api-rest
 ```
