@@ -2,8 +2,9 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as dotenv from "dotenv";
 import * as cors from "cors";
-import { createConnection } from "typeorm";
+import { createConnection, getConnectionOptions } from "typeorm";
 import { Routes } from "./routes/routes";
+import { User } from "./models/user";
 
 class App {
 
@@ -36,11 +37,13 @@ class App {
     }
 
     private databaseConnection(): void {
-        const runMode = process.env.MODE || 'test';
-        const databaseName = runMode == 'test' ? 'test' : 'default';
-        createConnection(databaseName).then(connection => {
-            console.log("The connection to the database has been established in mode: " + runMode);
-        }).catch(error => console.log(error));        
+        const databaseName = process.env.MODE || 'dev';
+        getConnectionOptions(databaseName).then(options => {
+            createConnection(options).then(connection => {
+                this.app.set('db', connection);
+                console.log("The connection to the database has been established in mode: " + databaseName);
+            })   
+        }).catch(error => console.log(error));;
     }
 
 }

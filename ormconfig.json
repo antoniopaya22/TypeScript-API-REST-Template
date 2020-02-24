@@ -6,7 +6,7 @@
     "entities": ["dist/models/*.js"],
     "logging": false
 }, {
-    "name": "test",
+    "name": "dev",
     "skip": false,
     "type": "sqlite",
     "database": "testDB.db",

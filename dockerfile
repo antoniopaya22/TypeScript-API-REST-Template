@@ -2,12 +2,7 @@
 # Dockerfile Node.js - Express
 ############################################################
 
-FROM node
-
-# Información de Metadata
-LABEL "com.antonioalfa22.apirest"="apirest"
-LABEL maintainer="antonioalfa22@gmail.com"
-LABEL version="1.0"
+FROM node:lts-alpine
 
 
 # Crear directorio de trabajo

@@ -3,9 +3,9 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class User {
 
-    constructor(firstName?: string, lastName?: string, hash?: string, salt?: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    constructor(username?: string, lastname?: string, hash?: string, salt?: string) {
+        this.username = username;
+        this.lastname = lastname;
         this.hash = hash;
         this.salt = salt;
     }
@@ -14,10 +14,10 @@ export class User {
     id: number;
 
     @Column()
-    firstName: string;
+    username: string;
 
     @Column()
-    lastName: string;
+    lastname: string;
 
     @Column()
     hash: string;

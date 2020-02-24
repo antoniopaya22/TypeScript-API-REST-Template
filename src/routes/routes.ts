@@ -11,13 +11,12 @@ export class Routes {
         // ========= USERS =========       
         app.route('/api/users')
         .get(this.userController.getUsers)
+        .post(this.userController.addUser)
 
-        app.route('/api/user')
-        .post(this.userController.addUserWithCrypto)
-
-        app.route('/api/user/:id')
-        .get(this.userController.getUserById)
+        app.route('/api/users/:id')
+        .get(this.auth.isAuth,this.userController.getUserById)
         .delete(this.auth.isAuth, this.userController.deleteUser)
+        .put(this.auth.isAuth, this.userController.updateUser)
 
         // ======== LOGIN ============
         app.route('/api/login')

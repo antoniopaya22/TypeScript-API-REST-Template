@@ -11,13 +11,13 @@ const signOpts = {
 export class Auth {
 
     public async login(req: Request, res: Response) {
-        const user = await UserRepository.getUserByFirstName(req.body.firstName);
+        const user = await UserRepository.getUserByUsername(req.body.username);
         if(user == undefined){
             res.status(403).json({error: "El usuario no existe"});
         }else {
             const hash = crypto.pbkdf2Sync(req.body.password, user.salt, 1000, 64, `sha512`).toString(`hex`);
             if(hash == user.hash){
-                res.status(200).send(Auth.createToken(user.firstName));
+                res.status(200).send(Auth.createToken(user.username));
             }else {
                 res.status(500).json({error: "Error, la contraseña no coincide"});
             }
@@ -38,9 +38,9 @@ export class Auth {
         }
     }
 
-    public static createToken(firstName: string): string{
+    public static createToken(username: string): string{
         const payload = {
-            name: firstName
+            name: username
         }
         return jwt.sign(payload, secret, signOpts);
     }
