@@ -40,6 +40,7 @@ class App {
         const databaseName = process.env.MODE || 'dev';
         getConnectionOptions(databaseName).then(options => {
             createConnection(options).then(connection => {
+                connection.synchronize();
                 this.app.set('db', connection);
                 console.log("The connection to the database has been established in mode: " + databaseName);
             })   
