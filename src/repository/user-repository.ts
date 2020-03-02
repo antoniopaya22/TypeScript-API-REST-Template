@@ -1,5 +1,5 @@
 import { User } from '../models/user';
-import { getConnection, DeleteResult, getRepository } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 import app from '../app';
 
 export class UserRepository {
@@ -32,7 +32,7 @@ export class UserRepository {
         return app.get('db').getRepository(User).save(user);
     }
 
-    public static updateUser(id: number, user: User): Promise<User> {
+    public static updateUser(id: number, user: User): Promise<UpdateResult> {
         return app.get('db').getRepository(User).update(id, user);
     }
 }

@@ -9,7 +9,7 @@
     "name": "dev",
     "skip": false,
     "type": "sqlite",
-    "database": "testDB.db",
+    "database": "dev.db",
     "entities": ["src/models/*.ts"],
     "logging": false
 }, {

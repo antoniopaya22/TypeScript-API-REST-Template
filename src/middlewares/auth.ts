@@ -11,16 +11,16 @@ const signOpts = {
 export class Auth {
 
     public async login(req: Request, res: Response) {
-        const user = await UserRepository.getUserByUsername(req.body.username);
-        if(user == undefined){
-            res.status(403).json({error: "El usuario no existe"});
-        }else {
-            const hash = crypto.pbkdf2Sync(req.body.password, user.salt, 1000, 64, `sha512`).toString(`hex`);
-            if(hash == user.hash){
-                res.status(200).send(Auth.createToken(user.username));
-            }else {
-                res.status(500).json({error: "Error, la contraseña no coincide"});
-            }
+        try {
+            const user = await UserRepository.getUserByUsername(req.body.username);
+            if(user){
+                const hash = crypto.pbkdf2Sync(req.body.password, user.salt, 1000, 64, `sha512`).toString(`hex`);
+                hash == user.hash ? 
+                    res.status(200).send(Auth.createToken(user.username)) :
+                    res.status(403).json({error: "Error, la contraseña no coincide"});
+            } else res.status(404).json({error: "El usuario no existe"});
+        } catch (error) {
+            res.status(500).json({ error: "Error al intentar iniciar sesion" });
         }
     }
 
