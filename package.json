@@ -28,7 +28,7 @@
         "nodemon": "^2.0.2",
         "reflect-metadata": "^0.1.13",
         "sqlite3": "^4.1.1",
-        "typeorm": "^0.2.22",
+        "typeorm": "^0.2.25",
         "typescript": "^3.7.4"
     },
     "devDependencies": {
